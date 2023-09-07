@@ -28,7 +28,7 @@ class Rectangle {
       console.log(`Instance width: ${r.width}`);
     } else {
       const r = new Rectangle();
-      console.log(`Instance width: ${r.width} - height: ${r.height}`);
+      console.log(`Instance no argument`);
     }
   }
   
