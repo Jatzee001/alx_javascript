@@ -22,8 +22,13 @@ class Rectangle {
       const height = parseInt(args[1]);
       const r = new Rectangle(width, height);
       console.log(`Instance width: ${r.width} - height: ${r.height}`);
+    } else if (args.length === 1) {
+      const width = parseInt(args[0]);
+      const r = new Rectangle(width);
+      console.log(`Instance width: ${r.width}`);
     } else {
-      console.log('Instance no argument');
+      const r = new Rectangle();
+      console.log(`Instance width: ${r.width} - height: ${r.height}`);
     }
   }
   
