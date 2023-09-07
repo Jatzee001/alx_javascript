@@ -12,4 +12,18 @@ class Rectangle {
     }
   }
   
-  module.exports = Rectangle;  
+  module.exports = Rectangle;
+  
+  if (require.main === module) {
+    const args = process.argv.slice(2);
+  
+    if (args.length === 2) {
+      const width = parseInt(args[0]);
+      const height = parseInt(args[1]);
+      const r = new Rectangle(width, height);
+      console.log(`Instance width: ${r.width} - height: ${r.height}`);
+    } else {
+      console.log('Instance no argument');
+    }
+  }
+  
