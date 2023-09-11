@@ -1,30 +1,15 @@
 const request = require('request');
 const fs = require('fs');
 
-// Define a mapping of URLs to file names
-const urlToFileMapping = {
-  'http://localhost:5050/route_0': 'small_text.txt',
-  'http://localhost:5050/route_1': 'big_text.txt',
-  'http://localhost:5050/route_2': 'empty_text.txt',
-};
-
-// Check if the URL argument is provided
-if (process.argv.length < 3) {
-  console.error('Usage: node fetch_and_save.js <URL>');
+// Check if both URL and file path arguments are provided
+if (process.argv.length < 4) {
+  console.error('Usage: node 3-request_store.js <URL> <file path>');
   process.exit(1);
 }
 
-// Get the URL from the command line argument
+// Get the URL and file path from the command line arguments
 const url = process.argv[2];
-
-// Check if the URL is in the mapping
-if (!urlToFileMapping.hasOwnProperty(url)) {
-  console.error('URL not found in mapping');
-  process.exit(1);
-}
-
-// Get the corresponding file name
-const fileName = urlToFileMapping[url];
+const filePath = process.argv[3];
 
 // Send a GET request to the specified URL
 request.get(url, (error, response, body) => {
@@ -39,11 +24,11 @@ request.get(url, (error, response, body) => {
   }
 
   // Write the response body to the specified file path with UTF-8 encoding
-  fs.writeFile(fileName, body, 'utf-8', (writeError) => {
+  fs.writeFile(filePath, body, 'utf-8', (writeError) => {
     if (writeError) {
       console.error(`Error writing to file: ${writeError.message}`);
       process.exit(1);
     }
-    console.log(`Data saved to ${fileName}`);
+    console.log(`Data saved to ${filePath}`);
   });
 });
