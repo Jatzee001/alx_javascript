@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cookies Example</title>
+</head>
+<body>
+    <h1>Cookie Example</h1>
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname"><br><br>
+    
+    <label for="email">Email:</label>
+    <input type="text" id="email"><br><br>
+    
+    <button onclick="setCookies()">Log me in</button>
+    <button onclick="showCookies()">Show the cookies</button>
+
+    <script>
+        function setCookies() {
+            const firstnameInput = document.getElementById('firstname').value;
+            const emailInput = document.getElementById('email').value;
+            
+            // Calculate the expiration date (10 days from now)
+            const expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate() + 10);
+            
+            // Set cookies with expiration date
+            document.cookie = `firstname=${firstnameInput}; expires=${expirationDate.toUTCString()}`;
+            document.cookie = `email=${emailInput}; expires=${expirationDate.toUTCString()}`;
+            
+            alert('Cookies set to expire in 10 days!');
+        }
+
+        function showCookies() {
+            const cookies = document.cookie;
+            const cookiesParagraph = document.createElement('p');
+            cookiesParagraph.innerHTML = `Cookies: ${cookies}`;
+            
+            document.body.appendChild(cookiesParagraph);
+        }
+    </script>
+</body>
+</html>
